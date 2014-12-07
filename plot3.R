@@ -1,3 +1,5 @@
+#Plot3
+
 library("dplyr")
 library("lubridate")
 Sys.setlocale('LC_TIME', 'C')
@@ -17,6 +19,10 @@ ub.df$Date <-(paste(ub.df$Date, ub.df$Time))
 
 ##Use of package lubridate to convert dates and time
 ub.df2<- mutate(ub.df, DateTime = ymd_hms(Date))
+ub.df2<- mutate(ub.df2, Sub_metering_1 = as.numeric(as.character(Sub_metering_1)))
+ub.df2<- mutate(ub.df2, Sub_metering_2 = as.numeric(as.character(Sub_metering_2)))
+ub.df2<- mutate(ub.df2, Sub_metering_3 = as.numeric(as.character(Sub_metering_3)))
+
 png(file =
             "plot3.png", width = 480, height = 480
 ) 
@@ -28,4 +34,3 @@ legend("topright", lty=1, col = c("black", "red", "blue"), cex=0.7, bty="o", lwd
 
 
 dev.off()
-
